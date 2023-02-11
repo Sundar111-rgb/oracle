@@ -17,3 +17,20 @@ dbms_output.put_line('Address :- '||c);
 end if;
 end if;
 end;
+
+---------------------------------------------
+
+DECLARE
+   CURSOR tmp IS SELECT * FROM Student ORDER BY id;
+   student_rec Student%ROWTYPE;
+BEGIN
+   OPEN tmp;
+   LOOP   -- loop through the table and get each employee
+      FETCH tmp INTO student_rec;
+      EXIT WHEN tmp%NOTFOUND;
+      dbms_output.put_line('Employee id ' || student_rec.id ||
+         ' is ' || student_rec.name);
+   END LOOP;
+   CLOSE tmp;
+END;
+
