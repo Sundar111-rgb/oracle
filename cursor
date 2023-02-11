@@ -1,0 +1,19 @@
+declare 
+cursor tmp is select * from Student;
+r Student.id%type;
+p Student.name%type;
+c Student.address%type;
+begin
+open tmp;
+fetch tmp into r,p,c;
+if tmp%found then
+if tmp%isopen then
+dbms_output.put_line('CREATE CURSOR IN ORACLE');
+dbms_output.put_line('');
+dbms_output.put_line('');
+dbms_output.put_line('Roll :- '||r);
+dbms_output.put_line('Name :- '||p);
+dbms_output.put_line('Address :- '||c);
+end if;
+end if;
+end;
